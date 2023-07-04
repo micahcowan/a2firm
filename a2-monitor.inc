@@ -1,0 +1,78 @@
+;; a2-monitor.inc
+;;   entry points, soft switches, and ZP var locations
+;;   from the Apple ][ monitor/AppleSoft
+
+Mon_WNDLFT	= $20
+Mon_WNDWDTH	= $21
+Mon_WNDTOP	= $22
+Mon_WNDBTM	= $23
+Mon_CH		= $24
+Mon_CV		= $25
+Mon_BASL	= $28
+Mon_BASH	= $29
+Mon_BAS2L	= $2a
+Mon_BAS2H	= $2b
+Mon_INVFLG	= $32
+Mon_PROMPT	= $33
+Mon_CSWL	= $36
+Mon_KSWL	= $38
+Mon_RNDL	= $4E
+Mon_RNDH	= $4F
+Mon_TEXTTAB	= $67
+Mon_VARTAB	= $69
+Mon_PRGEND	= $AF
+Mon_CHRGET	= $B1
+Mon_CHRGOT	= $B7
+
+Mon_BASCALC	= $FBC1
+Mon_BELL1	= $FBD9
+Mon_VTAB	= $FC22
+Mon_VTABZ	= $FC24
+Mon_HOME	= $FC58
+Mon_SCROLL	= $FC70
+Mon_CLREOL	= $FC9C
+Mon_CLEOLZ	= $FC9E
+Mon_KEYIN	= $FD1B
+Mon_GETLN	= $FD6A
+Mon_CROUT	= $FD8E
+Mon_PRBYTE	= $FDDA
+Mon_COUT	= $FDED
+Mon_COUT1	= $FDF0
+Mon_MONZ	= $FF69
+
+AS_INDEX	= $5E
+AS_DEST		= $60
+AS_FRETOP       = $6F
+AS_MEMSIZE      = $73
+AS_FAC		= $9D
+AS_ARG		= $A5
+AS_STRNG2	= $AD
+AS_STRING2	= AS_STRNG2
+AS_CHRGET	= $B1
+AS_CHRGOT	= $B7
+AS_TXTPTR	= $B8
+AS_ERRFLG	= $D8
+AS_AMP		= $03F5
+AS_ERROR	= $D412
+AS_SYNERR	= $DEC9
+AS_FRMEVL	= $DD7B
+AS_AYINT	= $E10C
+AS_GIVAYF	= $E2F2
+AS_FREFAC	= $E600
+AS_VALIDX	= $E70F
+AS_FADDT	= $E7C1
+AS_FMULT	= $E97F
+AS_FMULTT	= $E982
+AS_LOAD_ARG_FROM_YA = $E9E3
+AS_LOAD_FAC_FROM_YA = $EAF9
+AS_FDIV		= $EA66
+AS_FDIVT	= $EA69
+AS_FIN		= $EC4A
+AS_PRINT_FAC	= $ED2E
+AS_FPWRT	= $EE97
+
+SS_KBD		= $C000
+SS_KBDSTRB	= $C010
+SS_SPKR		= $C030
+SS_SEL_TEXT_P1	= $C054
+SS_SEL_TEXT_P2	= $C055
