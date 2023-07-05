@@ -44,8 +44,18 @@ CSWH    = $37
 KSWL    = $38
 KSW     = KSWL
 KSWH    = $39
-A1      = $3C
-A2      = $3D
+A1L     = $3C
+A1H     = $3D
+A2L     = $3E
+A2H     = $3F
+A3L     = $40
+A3H     = $41
+A4L     = $42
+A4H     = $43
+A1      = A1L
+A2      = A2L
+A3      = A3L
+A4      = A4L
 RNDL    = $4E
 RND     = RNDL
 RNDH    = $4F
@@ -79,7 +89,7 @@ TEMP2   = $98
 LOWTR   = $9B
 ARG     = $A5
 STRNG1  = $AB
-STRING1 = STRING1
+STRING1 = STRNG1
 STRNG2  = $AD
 STRING2 = STRNG2
 PRGEND  = $AF
@@ -100,31 +110,37 @@ REMSTK  = $F8 ; Stack ptr saved before each stm
 .endif
 
 .ifndef A2FIRM_NO_NAMESPACES
-.scope Mon
-.endif
-; Non-ZP locations
-STACK   = $100
-IN      = $200   ; what original Apple ][ monitor listing in techref calls it
-BUF     = IN     ; what AppleSoft Internal Entry Points (from the Apple Orchard) calls it
-BRKV    = $3F0
-SOFTEV  = $3F2
-PWREDUP = $3F4
-POWEREDUP = PWREDUP
-AMPERV  = $3F5
-USRADR  = $3FB
-NMI     = $3FB
-IRQLOC  = $3FE
-LINE1   = $400
-
-.ifndef A2FIRM_NO_NAMESPACES
 .scope ASoft
 .endif
+;;; AppleSoft constant values
+; Error codes
+ERR_NOFOR       = $00
+ERR_SYNTAX      = $10
+ERR_NOGOSUB     = $16
+ERR_NODATA      = $2A
+ERR_ILLQTY      = $35
+ERR_OVERFLOW    = $45
+ERR_MEMFULL     = $4D
+ERR_UNDEFSTAT   = $5A
+ERR_BADSUBS     = $6B
+ERR_REDIMD      = $78
+ERR_ZERODIV     = $85
+ERR_ILLDIR      = $95
+ERR_BADTYPE     = $A3
+ERR_STRLONG     = $B0
+ERR_FRMCPX      = $BF
+ERR_CANTCONT    = $D2
+ERR_UNDEFFUNC   = $E0
+
 CHRGET  = $B1 ; zero page routine
 CHRGOT  = $B7 ; zero page routine
+
 AMP          = $03F5
 BLTU         = $D393
 REASON       = $D3E3
+MEMERR       = $D410
 ERROR        = $D412
+ERROR2       = $D419 ; Name mine. Handle error, ignoring ONERR
 INLIN        = $D52C
 INLIN2       = $D52E
 GDBUFS       = $D539
@@ -144,6 +160,7 @@ LOAD         = $D8C9
 VARTIO       = $D8F0
 PROGIO       = $D901
 GOTO         = $D93E
+UNDERR       = $D97C ; undefined statement ERROR
 DATA         = $D995
 ADDON        = $D998
 DATAN        = $D9A3
@@ -174,9 +191,12 @@ BASIC        = $E000
 BASIC2       = $E003
 ISLETC       = $E07D
 AYINT        = $E10C
+SUBERR       = $E196 ; illegal subscript error
+IQERR        = $E199 ; illegal quantity error
 GIVAYF       = $E2F2 ; Float the signed integer in A,Y
 SNGFLT       = $E301 ; Float the unsigned integer in Y
-ERRDIR       = $E306
+ERRDIR       = $E306 ; throw an error iff in direct mode
+UNDFNC       = $E30E ; undefined function error
 STRINI       = $E3D5
 STRSPA       = $E3DD
 STRLIT       = $E3E7
@@ -197,12 +217,12 @@ VALIDX       = $E70F
 GETNUM       = $E746
 COMBYTE      = $E74C
 GETADR       = $E752
-FADDH        = $E7A0
+FADDH        = $E7A0 ; Add 1/2 to FAC
 FSUB         = $E7A7
 FSUBT        = $E7AA
-FADDH        = $E7A0 ; Add 1/2 to FAC
 FADD         = $E7BE
 FADDT        = $E7C1
+OVERFLOW     = $E8D5
 LOG          = $E941
 FMULT        = $E97F
 FMULTT       = $E982
@@ -212,6 +232,7 @@ MUL10        = $EA39
 DIV10        = $EA55
 FDIV         = $EA66
 FDIVT        = $EA69
+ZDIVERR      = $EAE1 ; zero-divison error. Name is mine.
 MOVFM        = $EAF9 ; AppleSoft Internals name
 LOAD_FAC_FROM_YA = $EAF9 ; disassembly project name
 MOV2F        = $EB1E
@@ -276,6 +297,23 @@ NUM_THOUMIL     = $ED14 ; 1,000,000,000
 .endscope
 .endif
 
+.ifndef A2FIRM_NO_NAMESPACES
+.scope Mon
+.endif
+; Non-ZP locations
+STACK   = $100
+IN      = $200   ; what original Apple ][ monitor listing in techref calls it
+BUF     = IN     ; what AppleSoft Internal Entry Points (from the Apple Orchard) calls it
+BRKV    = $3F0
+SOFTEV  = $3F2
+PWREDUP = $3F4
+POWEREDUP = PWREDUP
+AMPERV  = $3F5
+USRADR  = $3FB
+NMI     = $3FB
+IRQLOC  = $3FE
+LINE1   = $400
+
 ; Entry points
 PLOT    = $F800
 HLINE   = $F819
@@ -319,6 +357,8 @@ COUT    = $FDED
 COUT1   = $FDF0
 SETMODE = $FE18
 SETMDZ  = $FE1D
+MOVE    = $FE2C
+VFY     = $FE36
 SETINV  = $FE80
 SETNORM = $FE84
 SETKBD  = $FE89
