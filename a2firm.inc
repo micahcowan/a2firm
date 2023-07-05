@@ -1,78 +1,103 @@
-;; a2-monitor.inc
+;; a2-firm.inc
 ;;   entry points, soft switches, and ZP var locations
 ;;   from the Apple ][ monitor/AppleSoft
 
-Mon_WNDLFT	= $20
-Mon_WNDWDTH	= $21
-Mon_WNDTOP	= $22
-Mon_WNDBTM	= $23
-Mon_CH		= $24
-Mon_CV		= $25
-Mon_BASL	= $28
-Mon_BASH	= $29
-Mon_BAS2L	= $2a
-Mon_BAS2H	= $2b
-Mon_INVFLG	= $32
-Mon_PROMPT	= $33
-Mon_CSWL	= $36
-Mon_KSWL	= $38
-Mon_RNDL	= $4E
-Mon_RNDH	= $4F
-Mon_TEXTTAB	= $67
-Mon_VARTAB	= $69
-Mon_PRGEND	= $AF
-Mon_CHRGET	= $B1
-Mon_CHRGOT	= $B7
+; If you want names to be dumped directly into the global namespace,
+;  then define A2FIRM_NO_NAMESPACES
 
-Mon_BASCALC	= $FBC1
-Mon_BELL1	= $FBD9
-Mon_VTAB	= $FC22
-Mon_VTABZ	= $FC24
-Mon_HOME	= $FC58
-Mon_SCROLL	= $FC70
-Mon_CLREOL	= $FC9C
-Mon_CLEOLZ	= $FC9E
-Mon_KEYIN	= $FD1B
-Mon_GETLN	= $FD6A
-Mon_CROUT	= $FD8E
-Mon_PRBYTE	= $FDDA
-Mon_COUT	= $FDED
-Mon_COUT1	= $FDF0
-Mon_MONZ	= $FF69
+.ifndef A2FIRM_NO_NAMESPACES
+.scope ZP
+.endif
+WNDLFT  = $20
+WNDWDTH = $21
+WNDTOP  = $22
+WNDBTM  = $23
+CH      = $24
+CV      = $25
+BASL    = $28
+BASH    = $29
+BAS2L   = $2a
+BAS2H   = $2b
+INVFLG  = $32
+PROMPT  = $33
+CSWL    = $36
+KSWL    = $38
+RNDL    = $4E
+RNDH    = $4F
+INDEX   = $5E ; AppleSoft
+DEST    = $60 ; AppleSoft
+TEXTTAB = $67
+VARTAB  = $69
+FRETOP  = $6F ; AppleSoft
+MEMSIZE = $73 ; AppleSoft
+FAC     = $9D ; AppleSoft
+ARG     = $A5 ; AppleSoft
+STRNG2  = $AD ; AppleSoft
+STRING2 = AS_STRNG2
+PRGEND  = $AF
+TXTPTR  = $B8 ; AppleSoft
+ERRFLG  = $D8 ; AppleSoft
+.ifndef A2FIRM_NO_NAMESPACES
+.endscope
+.endif
 
-AS_INDEX	= $5E
-AS_DEST		= $60
-AS_FRETOP       = $6F
-AS_MEMSIZE      = $73
-AS_FAC		= $9D
-AS_ARG		= $A5
-AS_STRNG2	= $AD
-AS_STRING2	= AS_STRNG2
-AS_CHRGET	= $B1
-AS_CHRGOT	= $B7
-AS_TXTPTR	= $B8
-AS_ERRFLG	= $D8
-AS_AMP		= $03F5
-AS_ERROR	= $D412
-AS_SYNERR	= $DEC9
-AS_FRMEVL	= $DD7B
-AS_AYINT	= $E10C
-AS_GIVAYF	= $E2F2
-AS_FREFAC	= $E600
-AS_VALIDX	= $E70F
-AS_FADDT	= $E7C1
-AS_FMULT	= $E97F
-AS_FMULTT	= $E982
-AS_LOAD_ARG_FROM_YA = $E9E3
-AS_LOAD_FAC_FROM_YA = $EAF9
-AS_FDIV		= $EA66
-AS_FDIVT	= $EA69
-AS_FIN		= $EC4A
-AS_PRINT_FAC	= $ED2E
-AS_FPWRT	= $EE97
+.ifndef A2FIRM_NO_NAMESPACES
+.scope Mon
+.endif
+BASCALC = $FBC1
+BELL1   = $FBD9
+VTAB    = $FC22
+VTABZ   = $FC24
+HOME    = $FC58
+SCROLL  = $FC70
+CLREOL  = $FC9C
+CLEOLZ  = $FC9E
+KEYIN   = $FD1B
+GETLN   = $FD6A
+CROUT   = $FD8E
+PRBYTE  = $FDDA
+COUT    = $FDED
+COUT1   = $FDF0
+MONZ    = $FF69
+.ifndef A2FIRM_NO_NAMESPACES
+.endscope
+.endif
 
-SS_KBD		= $C000
-SS_KBDSTRB	= $C010
-SS_SPKR		= $C030
-SS_SEL_TEXT_P1	= $C054
-SS_SEL_TEXT_P2	= $C055
+.ifndef A2FIRM_NO_NAMESPACES
+.scope ASoft
+.endif
+CHRGET  = $B1 ; zero page routine
+CHRGOT  = $B7 ; zero page routine
+AMP          = $03F5
+ERROR        = $D412
+SYNERR       = $DEC9
+FRMEVL       = $DD7B
+AYINT        = $E10C
+GIVAYF       = $E2F2
+FREFAC       = $E600
+VALIDX       = $E70F
+FADDT        = $E7C1
+FMULT        = $E97F
+FMULTT       = $E982
+LOAD_ARG_FROM_YA = $E9E3
+LOAD_FAC_FROM_YA = $EAF9
+FDIV         = $EA66
+FDIVT        = $EA69
+FIN          = $EC4A
+PRINT_FAC    = $ED2E
+FPWRT        = $EE97
+.ifndef A2FIRM_NO_NAMESPACES
+.endscope
+.endif
+
+.ifndef A2FIRM_NO_NAMESPACES
+.scope Switch
+.endif
+KBD             = $C000
+KBDSTRB         = $C010
+SPKR            = $C030
+SEL_TEXT_P1     = $C054
+SEL_TEXT_P2     = $C055
+.ifndef A2FIRM_NO_NAMESPACES
+.endscope
+.endif
